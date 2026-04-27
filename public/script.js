@@ -335,3 +335,30 @@ function escapeHTML(value) {
     });
   });
 })();
+
+// Финальный 3D-эффект тарифов: карточка слегка «проминается» под мышкой
+(function finalTariffDentTilt(){
+  const cards = document.querySelectorAll('.tariff-card');
+  cards.forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      if (window.innerWidth < 900) return;
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const px = x / r.width;
+      const py = y / r.height;
+      card.style.setProperty('--dent-x', `${x}px`);
+      card.style.setProperty('--dent-y', `${y}px`);
+      const rotateX = (0.5 - py) * 10;
+      const rotateY = (px - 0.5) * 12;
+      const shiftX = (px - 0.5) * 8;
+      const shiftY = (py - 0.5) * 8;
+      card.style.transform = `perspective(950px) translate3d(${shiftX}px, ${8 + shiftY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(.985)`;
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
+      card.style.removeProperty('--dent-x');
+      card.style.removeProperty('--dent-y');
+    });
+  });
+})();
