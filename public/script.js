@@ -60,7 +60,7 @@ async function checkAdmin() {
 function updateAdminUI() {
   if (adminHint) adminHint.hidden = !isAdmin;
   if (adminButton) {
-    adminButton.textContent = isAdmin ? 'Выйти из админа' : 'Вход админа';
+    adminButton.textContent = isAdmin ? 'Отключить режим' : 'Вход админа';
     adminButton.classList.toggle('is-admin', isAdmin);
   }
 }
@@ -225,3 +225,23 @@ function escapeHTML(value) {
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
 }
+
+
+// Плавная навигация с запасом сверху, чтобы заголовки не прятались под шапкой
+(function setupSmartAnchors(){
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      event.preventDefault();
+      const header = document.querySelector('.site-header');
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      const extraGap = window.innerWidth <= 820 ? 22 : 34;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraGap;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      history.pushState(null, '', href);
+    });
+  });
+})();
