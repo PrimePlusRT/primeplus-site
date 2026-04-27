@@ -254,12 +254,7 @@ function escapeHTML(value) {
     root.style.setProperty('--my', `${e.clientY}px`);
   }, { passive:true });
 
-  const labels = ['Максимальный охват','Хит размещения','Лёгкий старт'];
-  const features = [
-    ['600 рекламных щитов','печать и раскладка включены','для крупных объявлений'],
-    ['600 рекламных щитов','баланс цены и заметности','для постоянной рекламы'],
-    ['600 рекламных щитов','доступный старт','для контактов и визиток']
-  ];
+  const labels = ['Максимальный охват','Оптимальный формат','Лёгкий старт'];
   document.querySelectorAll('.tariff-card').forEach((card, index) => {
     card.setAttribute('data-tilt','');
     if (!card.querySelector('.tariff-glow')) card.insertAdjacentHTML('afterbegin','<div class="tariff-glow"></div>');
@@ -267,11 +262,6 @@ function escapeHTML(value) {
       const cls = index === 1 ? 'tariff-label tariff-label--hit' : 'tariff-label';
       const title = labels[index] || 'Тариф';
       card.insertAdjacentHTML('afterbegin', `<span class="${cls}">${title}</span>`);
-    }
-    if (!card.querySelector('.tariff-features')) {
-      const html = (features[index] || []).map((item)=>`<li>${item}</li>`).join('');
-      const priceBlock = card.querySelector('strong');
-      if (priceBlock) priceBlock.insertAdjacentHTML('beforebegin', `<ul class="tariff-features">${html}</ul>`);
     }
   });
 
@@ -298,7 +288,7 @@ function escapeHTML(value) {
       const y = e.clientY - r.top;
       const rx = ((y / r.height) - 0.5) * -7;
       const ry = ((x / r.width) - 0.5) * 8;
-      const lift = card.classList.contains('tariff-card--accent') ? -18 : -12;
+      const lift = -12;
       card.style.transform = `translateY(${lift}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
     });
     card.addEventListener('pointerleave', () => {
