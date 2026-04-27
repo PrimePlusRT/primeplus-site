@@ -7,12 +7,15 @@
   <meta name="description" content="Размещение рекламы внутри подъездов в Нижнекамске. Более 600 подъездов, форматы A4, A5, A6." />
   <link rel="preconnect" href="https://unpkg.com" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Прайм Плюс">
       <img src="logo.png" alt="Прайм Плюс" />
+      <span>Реклама в подъездах</span>
     </a>
     <nav class="nav" aria-label="Основное меню">
       <a href="#about">О компании</a>
@@ -26,8 +29,8 @@
   <main id="top">
     <section class="hero section-shell">
       <div class="hero__content">
-        <span class="eyebrow">Реклама в жилых домах Нижнекамска</span>
-        <h1>Размещение рекламы <span>внутри подъездов</span></h1>
+        <span class="eyebrow">Реклама в подъездах Нижнекамска</span>
+        <h1>Размещение рекламы <span>более чем в 600 подъездах</span></h1>
         <p>Заявите о себе и раскрутите свой бренд, товары или услуги среди широкой аудитории — рядом с домом, каждый день, на заметном рекламном щите.</p>
         <div class="hero__actions">
           <a class="button button--primary" href="#contacts">Получить консультацию</a>
@@ -35,48 +38,34 @@
         </div>
         <div class="hero__stats">
           <div><b>600+</b><span>подъездов</span></div>
-          <div><b>16</b><span>слотов A5</span></div>
-          <div><b>A4 / A5 / A6</b><span>форматы</span></div>
+          <div><b>16</b><span>рекламных слотов</span></div>
+          <div><b>3</b><span>формата размещения</span></div>
         </div>
       </div>
+
       <div class="hero__visual">
-        <div class="glass-card map-card">
-          <div class="map-card__top"><span></span><span></span><span></span></div>
+        <div class="map-window">
+          <div class="window-title"><i></i><i></i><i></i><b>Карта размещения щитов</b></div>
           <div id="map" class="map"></div>
           <div id="mapFallback" class="map-fallback" hidden><img src="map.jpg" alt="Карта покрытия" /></div>
+          <div class="map-badge">Более чем<br><strong>в 600 подъездах</strong></div>
         </div>
-        <div class="floating-note">Более чем в 600 подъездах</div>
       </div>
     </section>
 
-    <section id="about" class="section-shell about-grid">
-      <div>
-        <span class="eyebrow">О компании</span>
-        <h2>ООО «Прайм Плюс» помогает бизнесу быть заметнее</h2>
-        <p class="section-lead">Мы размещаем объявления на рекламных щитах внутри подъездов: это локальный и понятный способ рассказать о бренде, услуге или акции жителям города.</p>
-      </div>
-      <div class="info-card">
-        <p><b>Полное наименование:</b><br>Общество с ограниченной ответственностью «Прайм Плюс»</p>
-        <p><b>Краткое наименование:</b><br>ООО «Прайм Плюс»</p>
-        <p><b>Юридический адрес:</b><br>город Чистополь, ул. Энгельса д.161</p>
-      </div>
-    </section>
-
-    <section id="tariffs" class="section-shell tariffs-section">
+    <section id="tariffs" class="section-shell formats-section">
       <div class="section-title">
         <span class="eyebrow">Тарифы</span>
-        <h2>Выберите формат размещения</h2>
-        <p>Стоимость указана за одну рекламную колонку в месяц. Включено редактирование колонки, печать и раскладка.</p>
+        <h2>Форматы размещения</h2>
       </div>
-
-      <div class="format-row">
-        <div class="format-board" aria-label="Схема форматов на рекламном щите">
-          <div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a4">A4</div>
-          <div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a4"></div>
-          <div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a5">A5</div>
-          <div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a5"></div><div class="slot slot--a6">A6</div>
+      <div class="format-row format-row--clean">
+        <div class="format-board format-board--classic" aria-label="Схема форматов на рекламном щите">
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot slot--a4">A4</div>
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot slot--a5">A5</div>
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot slot--a6">A6</div>
         </div>
-        <div class="format-copy">
+        <div class="format-copy format-copy--clean">
           <div><b>«Объемный» — колонка A4</b><span>210 × 297 мм, формат целого листа A4.</span></div>
           <div><b>«Весь город» — колонка A5</b><span>148 × 210 мм, формат половины листа A4.</span></div>
           <div><b>«Лайт» — колонка A6</b><span>148 × 105 мм, компактный формат визитницы.</span></div>
@@ -94,7 +83,20 @@
           <span class="badge">A6</span><h3>«Лайт»</h3><div class="size">148×105 мм</div><p>Визитница формата A6<br>600 рекламных щитов</p><div class="price">10 ₽</div><small>за 1 рекламную колонку / месяц</small><strong>Итого за месяц: 6 000 ₽</strong>
         </article>
       </div>
-      <p class="tariff-note">* Размеры иных параметров оговариваются при необходимости индивидуально.</p>
+      <p class="tariff-note">* В стоимость включено редактирование колонки, печать и раскладка. Размеры иных параметров оговариваются индивидуально.</p>
+    </section>
+
+    <section id="about" class="section-shell about-grid">
+      <div>
+        <span class="eyebrow">О компании</span>
+        <h2>ООО «Прайм Плюс» помогает бизнесу быть заметнее</h2>
+        <p class="section-lead">Мы размещаем объявления на рекламных щитах внутри подъездов: это локальный и понятный способ рассказать о бренде, услуге или акции жителям города.</p>
+      </div>
+      <div class="info-card">
+        <p><b>Полное наименование:</b><br>Общество с ограниченной ответственностью «Прайм Плюс»</p>
+        <p><b>Краткое наименование:</b><br>ООО «Прайм Плюс»</p>
+        <p><b>Юридический адрес:</b><br>город Чистополь, ул. Энгельса д.161</p>
+      </div>
     </section>
 
     <section class="section-shell occupancy-section">
@@ -121,20 +123,26 @@
       </div>
     </section>
 
-    <section id="contacts" class="section-shell contacts-section">
-      <div class="contact-card">
-        <span class="eyebrow">Контакты</span>
-        <h2>Ваш персональный менеджер</h2>
-        <a class="phone" href="tel:+79393742324">8-93-93-74-23-24</a>
-        <div class="contact-actions">
-          <a class="button button--primary" href="tel:+79393742324">Позвонить</a>
-          <a class="button button--ghost" href="https://wa.me/79393742324" target="_blank" rel="noopener">WhatsApp</a>
+    <section id="contacts" class="contacts-band">
+      <div class="section-shell contact-layout">
+        <div>
+          <span class="eyebrow eyebrow--light">Контакты</span>
+          <h2>Свяжитесь с нами</h2>
+          <p>Поможем определиться с форматом размещения. Консультация бесплатная.</p>
+        </div>
+        <div class="contact-card">
+          <h3>Ваш персональный менеджер</h3>
+          <a class="phone" href="tel:+79393742324">8-93-93-74-23-24</a>
+          <span>Консультация с 08:00 до 19:00</span>
+          <div class="contact-actions">
+            <a class="button button--primary" href="tel:+79393742324">Позвонить</a>
+            <a class="button button--whatsapp" href="https://wa.me/79393742324" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
         </div>
         <ul class="contact-list">
           <li><img src="icons/email.png" alt=""> Prime.plus.rt@gmail.com</li>
           <li><img src="icons/telegram.png" alt=""> Telegram: 8 93 93 74 23 24</li>
           <li><img src="icons/MAX.png" alt=""> MAX: 8 93 93 74 23 24</li>
-          <li><img src="icons/tel.png" alt=""> Консультация с 08:00 до 19:00</li>
         </ul>
       </div>
     </section>
@@ -144,6 +152,7 @@
   <footer class="footer">© Прайм Плюс · Размещение рекламы внутри подъездов</footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

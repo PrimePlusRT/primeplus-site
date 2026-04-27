@@ -150,10 +150,16 @@ async function initMap() {
     return;
   }
 
-  const map = L.map(mapEl, { scrollWheelZoom: false }).setView([55.635, 51.82], 12);
+  const map = L.map(mapEl, {
+    scrollWheelZoom: true,
+    dragging: true,
+    zoomControl: true,
+    attributionControl: true
+  }).setView([55.635, 51.82], 12);
+
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; OpenStreetMap'
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   let mapHouses = [];
@@ -171,35 +177,37 @@ async function initMap() {
     return;
   }
 
-  const clusters = new Map();
+  const pinIcon = L.divIcon({
+    className: '',
+    html: '<div class="pin-marker"></div>',
+    iconSize: [34, 34],
+    iconAnchor: [17, 34],
+    popupAnchor: [0, -30]
+  });
+
+  const group = typeof L.markerClusterGroup === 'function'
+    ? L.markerClusterGroup({
+        showCoverageOnHover: false,
+        spiderfyOnMaxZoom: true,
+        disableClusteringAtZoom: 17,
+        maxClusterRadius: 44
+      })
+    : L.layerGroup();
+
+  const bounds = [];
   withCoords.forEach((h) => {
     const lat = Number(h.lat);
     const lon = Number(h.lon);
-    const key = `${Math.round(lat * 350)}_${Math.round(lon * 350)}`;
-    if (!clusters.has(key)) clusters.set(key, []);
-    clusters.get(key).push(h);
-  });
-
-  const bounds = [];
-  clusters.forEach((items) => {
-    const lat = items.reduce((sum, h) => sum + Number(h.lat), 0) / items.length;
-    const lon = items.reduce((sum, h) => sum + Number(h.lon), 0) / items.length;
     bounds.push([lat, lon]);
-
-    const entrancesTotal = items.reduce((sum, h) => sum + (Number(h.entrances) || 0), 0);
-    const label = items.length > 1 ? items.length : (items[0].entrances || '');
-    const className = items.length > 1 ? 'marker-dot cluster' : 'marker-dot';
-    const popup = items.length > 1
-      ? `<b>${items.length} домов рядом</b><br>Подъездов всего: ${escapeHTML(entrancesTotal || '—')}`
-      : `<b>${escapeHTML(getAddress(items[0]))}</b><br>Подъездов: ${escapeHTML(items[0].entrances || '—')}<br>Этажей: ${escapeHTML(items[0].floors || '—')}`;
-
-    const icon = L.divIcon({ className: '', html: `<div class="${className}">${escapeHTML(label)}</div>`, iconSize: [34, 34], iconAnchor: [17, 17] });
-    L.marker([lat, lon], { icon }).addTo(map).bindPopup(popup);
+    const popup = `<b>${escapeHTML(getAddress(h))}</b><br>Подъездов: ${escapeHTML(h.entrances || '—')}<br>Этажей: ${escapeHTML(h.floors || '—')}`;
+    group.addLayer(L.marker([lat, lon], { icon: pinIcon }).bindPopup(popup));
   });
 
-  setTimeout(() => map.invalidateSize(), 120);
-  if (bounds.length) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
+  group.addTo(map);
+  setTimeout(() => map.invalidateSize(), 180);
+  if (bounds.length) map.fitBounds(bounds, { padding: [48, 48], maxZoom: 14 });
 }
+
 
 function getAddress(h) {
   if (!h) return '';
