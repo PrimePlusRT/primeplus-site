@@ -159,6 +159,19 @@
   </main>
 
   <div id="adminHint" class="admin-hint" hidden>Режим администратора включён</div>
+
+  <div id="adminModal" class="admin-modal" hidden>
+    <div class="admin-modal__backdrop" data-admin-close></div>
+    <form class="admin-modal__card" id="adminLoginForm">
+      <button class="admin-modal__close" type="button" data-admin-close aria-label="Закрыть">×</button>
+      <div class="admin-modal__icon">🔐</div>
+      <h2>Вход администратора</h2>
+      <p>Введите пароль, чтобы включить режим управления слотами.</p>
+      <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Пароль" />
+      <button class="button button--primary" type="submit">Войти</button>
+      <span id="adminError" class="admin-modal__error" hidden>Неверный пароль</span>
+    </form>
+  </div>
   <footer class="footer">© Прайм Плюс · Размещение рекламы внутри подъездов</footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

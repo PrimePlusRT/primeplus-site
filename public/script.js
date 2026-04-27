@@ -7,8 +7,15 @@ const adminButton = document.getElementById('adminButton');
 const adminHint = document.getElementById('adminHint');
 const housesList = document.getElementById('housesList');
 const houseSearch = document.getElementById('houseSearch');
+const adminModal = document.getElementById('adminModal');
+const adminLoginForm = document.getElementById('adminLoginForm');
+const adminPassword = document.getElementById('adminPassword');
+const adminError = document.getElementById('adminError');
 
 adminButton?.addEventListener('click', handleAdminClick);
+adminLoginForm?.addEventListener('submit', submitAdminLogin);
+document.querySelectorAll('[data-admin-close]').forEach((btn) => btn.addEventListener('click', closeAdminModal));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAdminModal(); });
 houseSearch?.addEventListener('input', () => renderHouses(houseSearch.value));
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -26,24 +33,55 @@ async function handleAdminClick() {
     renderSlots();
     return;
   }
+  openAdminModal();
+}
 
-  const password = prompt('Введите пароль администратора');
+function openAdminModal() {
+  if (!adminModal) return;
+  adminModal.hidden = false;
+  document.body.classList.add('modal-open');
+  if (adminError) adminError.hidden = true;
+  if (adminPassword) {
+    adminPassword.value = '';
+    setTimeout(() => adminPassword.focus(), 80);
+  }
+}
+
+function closeAdminModal() {
+  if (!adminModal || adminModal.hidden) return;
+  adminModal.hidden = true;
+  document.body.classList.remove('modal-open');
+}
+
+async function submitAdminLogin(event) {
+  event.preventDefault();
+  const password = adminPassword?.value.trim();
   if (!password) return;
 
-  const res = await fetch('/api/admin/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ password })
-  });
+  const submitButton = adminLoginForm?.querySelector('button[type="submit"]');
+  if (submitButton) submitButton.disabled = true;
 
-  if (!res.ok) {
-    alert('Неверный пароль');
-    return;
+  try {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    });
+
+    if (!res.ok) {
+      if (adminError) adminError.hidden = false;
+      adminPassword?.classList.add('is-error');
+      setTimeout(() => adminPassword?.classList.remove('is-error'), 450);
+      return;
+    }
+
+    isAdmin = true;
+    closeAdminModal();
+    updateAdminUI();
+    renderSlots();
+  } finally {
+    if (submitButton) submitButton.disabled = false;
   }
-
-  isAdmin = true;
-  updateAdminUI();
-  renderSlots();
 }
 
 async function checkAdmin() {
@@ -254,7 +292,7 @@ function escapeHTML(value) {
     root.style.setProperty('--my', `${e.clientY}px`);
   }, { passive:true });
 
-  const labels = ['Максимальный охват','Оптимальный формат','Лёгкий старт'];
+  const labels = ['Большой формат','Самый универсальный','Компактный формат'];
   document.querySelectorAll('.tariff-card').forEach((card, index) => {
     card.setAttribute('data-tilt','');
     if (!card.querySelector('.tariff-glow')) card.insertAdjacentHTML('afterbegin','<div class="tariff-glow"></div>');
@@ -286,10 +324,11 @@ function escapeHTML(value) {
       const r = card.getBoundingClientRect();
       const x = e.clientX - r.left;
       const y = e.clientY - r.top;
-      const rx = ((y / r.height) - 0.5) * -7;
-      const ry = ((x / r.width) - 0.5) * 8;
-      const lift = -12;
-      card.style.transform = `translateY(${lift}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      const rx = ((y / r.height) - 0.5) * 9;
+      const ry = ((x / r.width) - 0.5) * -10;
+      const mx = ((x / r.width) - 0.5) * -8;
+      const my = ((y / r.height) - 0.5) * -8;
+      card.style.transform = `translate3d(${mx}px, ${my - 10}px, 0) rotateX(${rx}deg) rotateY(${ry}deg) scale(.985)`;
     });
     card.addEventListener('pointerleave', () => {
       card.style.transform = '';
