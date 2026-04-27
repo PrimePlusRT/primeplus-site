@@ -318,47 +318,26 @@ function escapeHTML(value) {
     if (observer) observer.observe(el); else el.classList.add('is-visible');
   });
 
+  const desktopCanHover = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 981px)').matches;
   document.querySelectorAll('[data-tilt]').forEach((card) => {
+    if (!desktopCanHover) return;
     card.addEventListener('pointermove', (e) => {
-      if (window.innerWidth < 900) return;
-      const r = card.getBoundingClientRect();
-      const x = e.clientX - r.left;
-      const y = e.clientY - r.top;
-      const rx = ((y / r.height) - 0.5) * 9;
-      const ry = ((x / r.width) - 0.5) * -10;
-      const mx = ((x / r.width) - 0.5) * -8;
-      const my = ((y / r.height) - 0.5) * -8;
-      card.style.transform = `translate3d(${mx}px, ${my - 10}px, 0) rotateX(${rx}deg) rotateY(${ry}deg) scale(.985)`;
-    });
-    card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-    });
-  });
-})();
-
-// Финальный 3D-эффект тарифов: карточка слегка «проминается» под мышкой
-(function finalTariffDentTilt(){
-  const cards = document.querySelectorAll('.tariff-card');
-  cards.forEach((card) => {
-    card.addEventListener('pointermove', (e) => {
-      if (window.innerWidth < 900) return;
       const r = card.getBoundingClientRect();
       const x = e.clientX - r.left;
       const y = e.clientY - r.top;
       const px = x / r.width;
       const py = y / r.height;
-      card.style.setProperty('--dent-x', `${x}px`);
-      card.style.setProperty('--dent-y', `${y}px`);
+
       const rotateX = (0.5 - py) * 10;
       const rotateY = (px - 0.5) * 12;
-      const shiftX = (px - 0.5) * 8;
-      const shiftY = (py - 0.5) * 8;
-      card.style.transform = `perspective(950px) translate3d(${shiftX}px, ${8 + shiftY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(.985)`;
-    });
+      const pushX = (px - 0.5) * 6;
+      const pushY = (py - 0.5) * 6;
+
+      card.style.transform = `perspective(1100px) translate3d(${pushX}px, ${pushY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015)`;
+    }, { passive: true });
     card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-      card.style.removeProperty('--dent-x');
-      card.style.removeProperty('--dent-y');
+      card.style.transform = 'perspective(1100px) translate3d(0,0,0) rotateX(0deg) rotateY(0deg) scale(1)';
+      window.setTimeout(() => { card.style.transform = ''; }, 180);
     });
   });
 })();
