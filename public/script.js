@@ -292,16 +292,8 @@ function escapeHTML(value) {
     root.style.setProperty('--my', `${e.clientY}px`);
   }, { passive:true });
 
-  const labels = ['Большой формат','Самый универсальный','Компактный формат'];
-  document.querySelectorAll('.tariff-card').forEach((card, index) => {
-    card.setAttribute('data-tilt','');
-    if (!card.querySelector('.tariff-glow')) card.insertAdjacentHTML('afterbegin','<div class="tariff-glow"></div>');
-    if (!card.querySelector('.tariff-label')) {
-      const cls = index === 1 ? 'tariff-label tariff-label--hit' : 'tariff-label';
-      const title = labels[index] || 'Тариф';
-      card.insertAdjacentHTML('afterbegin', `<span class="${cls}">${title}</span>`);
-    }
-  });
+  // Тарифные карточки оформлены в HTML/CSS: не добавляем служебные подписи,
+  // чтобы передняя сторона не зеркалилась и не ломалась при flip-анимации.
 
   const revealTargets = document.querySelectorAll('.section-shell, .contacts-band, .tariff-card, .format-copy div');
   revealTargets.forEach((el) => el.classList.add('reveal'));
@@ -318,35 +310,40 @@ function escapeHTML(value) {
     if (observer) observer.observe(el); else el.classList.add('is-visible');
   });
 
+  const desktopCanHover = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 981px)').matches;
   document.querySelectorAll('[data-tilt]').forEach((card) => {
+    if (!desktopCanHover) return;
     card.addEventListener('pointermove', (e) => {
-      if (window.innerWidth < 900) return;
       const r = card.getBoundingClientRect();
       const x = e.clientX - r.left;
       const y = e.clientY - r.top;
-      const rx = ((y / r.height) - 0.5) * 9;
-      const ry = ((x / r.width) - 0.5) * -10;
-      const mx = ((x / r.width) - 0.5) * -8;
-      const my = ((y / r.height) - 0.5) * -8;
-      card.style.transform = `translate3d(${mx}px, ${my - 10}px, 0) rotateX(${rx}deg) rotateY(${ry}deg) scale(.985)`;
-    });
+      const px = x / r.width;
+      const py = y / r.height;
+
+      const rotateX = (0.5 - py) * 10;
+      const rotateY = (px - 0.5) * 12;
+      const pushX = (px - 0.5) * 6;
+      const pushY = (py - 0.5) * 6;
+
+      card.style.transform = `perspective(1100px) translate3d(${pushX}px, ${pushY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015)`;
+    }, { passive: true });
     card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
+      card.style.transform = 'perspective(1100px) translate3d(0,0,0) rotateX(0deg) rotateY(0deg) scale(1)';
+      window.setTimeout(() => { card.style.transform = ''; }, 180);
     });
   });
 })();
 
-// Flip cards: click/tap toggles on phones, hover works on desktop via CSS.
-(function setupTariffFlipCards(){
-  document.querySelectorAll('.tariff-flip-card').forEach((card) => {
-    card.addEventListener('click', (event) => {
-      if (event.target.closest('a')) return;
-      if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-      card.classList.toggle('is-flipped');
-    });
-    card.addEventListener('keydown', (event) => {
-      if (event.key !== 'Enter' && event.key !== ' ') return;
-      event.preventDefault();
+// Flip tariff cards: desktop opens on hover, mobile opens on tap.
+(function flipTariffCards(){
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  document.querySelectorAll('.flip-card').forEach((card) => {
+    if (canHover) return;
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      document.querySelectorAll('.flip-card.is-flipped').forEach((other) => {
+        if (other !== card) other.classList.remove('is-flipped');
+      });
       card.classList.toggle('is-flipped');
     });
   });
