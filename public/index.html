@@ -1,250 +1,70 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Прайм Плюс — реклама в подъездах</title>
-  <meta name="description" content="Размещение рекламы внутри подъездов в Нижнекамске. Более 600 подъездов, форматы A4, A5, A6." />
-  <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прайм Плюс</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand brand--new" href="#top" aria-label="Прайм Плюс">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
-      <span class="brand-text"><b>Прайм Плюс</b><small>Реклама в подъездах</small></span>
-    </a>
-    <nav class="nav" aria-label="Основное меню">
-      <a href="#about">О компании</a>
-      <a href="#tariffs">Тарифы</a>
-      <a href="#contacts">Контакты</a>
-      <a href="#houses">Дома с щитами</a>
-    </nav>
-    <button id="adminButton" class="admin-button" type="button">Вход админа</button>
-  </header>
-  <nav class="mobile-tabbar" aria-label="Быстрая навигация">
-    <a href="#top">Главная</a>
-    <a href="#tariffs">Тарифы</a>
-    <a href="#houses">Дома</a>
-    <a href="#contacts">Связь</a>
-  </nav>
 
-  <main id="top">
-    <section class="hero section-shell">
-      <div class="hero__content">
-        <span class="eyebrow">Реклама в подъездах Нижнекамска</span>
-        <h1>Размещение рекламы <span>более чем в 600 подъездах</span></h1>
-        <p>Заявите о себе и раскрутите свой бренд, товары или услуги среди широкой аудитории — рядом с домом, каждый день, на заметном рекламном щите.</p>
-        <div class="hero__actions">
-          <a class="button button--primary" href="#contacts">Получить консультацию</a>
-          <a class="button button--ghost" href="#tariffs">Смотреть тарифы</a>
-        </div>
-        <div class="hero__stats">
-          <div><b>600+</b><span>подъездов</span></div>
-          <div><b>16</b><span>рекламных слотов</span></div>
-          <div><b>3</b><span>формата размещения</span></div>
-        </div>
-      </div>
+<section class="tariffs">
 
-      <div class="hero__visual">
-        <div class="map-window">
-          <div class="window-title"><i></i><i></i><i></i><b>Карта размещения щитов</b></div>
-          <div id="map" class="map"></div>
-          <div id="mapFallback" class="map-fallback" hidden><img src="map.jpg" alt="Карта покрытия" /></div>
-          <div class="map-badge">Более чем<br><strong>в 600 подъездах</strong></div>
-        </div>
-      </div>
-    </section>
+  <div class="tariff-card">
+    <div class="tariff-top">
+      <span class="tag">Максимальный охват</span>
+      <span class="format">A4</span>
+    </div>
+    <h3>«Объемный»</h3>
+    <div class="size">210×297 мм</div>
 
-    <section id="tariffs" class="section-shell formats-section">
-      <div class="section-title">
-        <span class="eyebrow">Тарифы</span>
-        <h2>Форматы размещения</h2>
-      </div>
-      <div class="format-row format-row--clean">
-        <div class="format-board format-board--classic format-board--exact" aria-label="Схема форматов на рекламном щите">
-          <div class="slot empty s1"></div><div class="slot empty s2"></div><div class="slot empty s3"></div>
-          <div class="slot empty s4"></div><div class="slot empty s5"></div><div class="slot empty s6"></div>
-          <div class="slot empty s7"></div><div class="slot empty s8"></div><div class="slot empty s9"></div>
-          <div class="slot empty s10"></div><div class="slot empty s11"></div><div class="slot empty s12"></div>
-          <div class="slot slot--a4">A4</div>
-          <div class="slot slot--a5">A5</div>
-          <div class="slot slot--a6top">A6</div>
-          <div class="slot slot--a6bottom">A6</div>
-        </div>
-        <div class="format-copy format-copy--clean">
-          <div><b>«Объемный» — колонка A4</b><span>210 × 297 мм, формат целого листа A4.</span></div>
-          <div><b>«Весь город» — колонка A5</b><span>148 × 210 мм, формат половины листа A4.</span></div>
-          <div><b>«Лайт» — колонка A6</b><span>148 × 105 мм, компактный формат визитницы.</span></div>
-        </div>
-      </div>
+    <ul class="features">
+      <li>600 подъездов</li>
+      <li>16 рекламных слотов</li>
+      <li>Максимальная заметность</li>
+    </ul>
 
-      <div class="tariff-cards tariff-cards--flip">
-        <article class="tariff-card flip-card">
-          <div class="tariff-card__inner">
-            <div class="tariff-face tariff-face--front">
-              <span class="tariff-pill">Максимальный охват</span>
-              <span class="badge">A4</span>
-              <div class="tariff-mini tariff-mini--a4" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-              <h3>«Объемный»</h3>
-              <div class="size">210×297 мм</div>
-              <p>Колонка формата A4<br>600 рекламных щитов</p>
-              <div class="price">40 ₽</div>
-              <small>за 1 рекламную колонку / месяц</small>
-              <strong>Итого за месяц: 24 000 ₽</strong>
-              <em>Наведите, чтобы увидеть детали</em>
-            </div>
-            <div class="tariff-face tariff-face--back">
-              <span class="badge">A4</span>
-              <h3>Что получает клиент</h3>
-              <ul>
-                <li>Самый заметный формат на щите</li>
-                <li>Подходит для акций, меню и больших объявлений</li>
-                <li>Редактирование, печать и раскладка включены</li>
-              </ul>
-              <a href="#contacts" class="button button--primary">Уточнить размещение</a>
-            </div>
-          </div>
-        </article>
-        <article class="tariff-card flip-card tariff-card--accent">
-          <div class="tariff-card__inner">
-            <div class="tariff-face tariff-face--front">
-              <span class="tariff-pill">Универсальный формат</span>
-              <span class="badge">A5</span>
-              <div class="tariff-mini tariff-mini--a5" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-              <h3>«Весь город»</h3>
-              <div class="size">148×210 мм</div>
-              <p>Колонка формата A5<br>600 рекламных щитов</p>
-              <div class="price">20 ₽</div>
-              <small>за 1 рекламную колонку / месяц</small>
-              <strong>Итого за месяц: 12 000 ₽</strong>
-              <em>Наведите, чтобы увидеть детали</em>
-            </div>
-            <div class="tariff-face tariff-face--back">
-              <span class="badge">A5</span>
-              <h3>Оптимальный вариант</h3>
-              <ul>
-                <li>Баланс размера и стоимости</li>
-                <li>Хорошо подходит для услуг и локального бизнеса</li>
-                <li>Размещение сразу на 600 рекламных щитах</li>
-              </ul>
-              <a href="#contacts" class="button button--primary">Получить консультацию</a>
-            </div>
-          </div>
-        </article>
-        <article class="tariff-card flip-card">
-          <div class="tariff-card__inner">
-            <div class="tariff-face tariff-face--front">
-              <span class="tariff-pill">Компактный старт</span>
-              <span class="badge">A6</span>
-              <div class="tariff-mini tariff-mini--a6" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-              <h3>«Лайт»</h3>
-              <div class="size">148×105 мм</div>
-              <p>Визитница формата A6<br>600 рекламных щитов</p>
-              <div class="price">10 ₽</div>
-              <small>за 1 рекламную колонку / месяц</small>
-              <strong>Итого за месяц: 6 000 ₽</strong>
-              <em>Наведите, чтобы увидеть детали</em>
-            </div>
-            <div class="tariff-face tariff-face--back">
-              <span class="badge">A6</span>
-              <h3>Лёгкий вход</h3>
-              <ul>
-                <li>Для контактов, визиток и коротких предложений</li>
-                <li>Минимальная стоимость размещения</li>
-                <li>Можно быстро протестировать рекламу</li>
-              </ul>
-              <a href="#contacts" class="button button--primary">Оставить заявку</a>
-            </div>
-          </div>
-        </article>
-      </div>
-      <p class="tariff-note">* В стоимость включено редактирование колонки, печать и раскладка. Размеры иных параметров оговариваются индивидуально.</p>
-    </section>
-
-    <section id="about" class="section-shell about-grid">
-      <div>
-        <span class="eyebrow">О компании</span>
-        <h2>ООО «Прайм Плюс» помогает бизнесу быть заметнее</h2>
-        <p class="section-lead">Мы размещаем объявления на рекламных щитах внутри подъездов: это локальный и понятный способ рассказать о бренде, услуге или акции жителям города.</p>
-      </div>
-      <div class="info-card">
-        <p><b>Полное наименование:</b><br>Общество с ограниченной ответственностью «Прайм Плюс»</p>
-        <p><b>Краткое наименование:</b><br>ООО «Прайм Плюс»</p>
-        <p><b>Юридический адрес:</b><br>город Чистополь, ул. Энгельса д.161</p>
-      </div>
-    </section>
-
-    <section class="section-shell occupancy-section">
-      <div class="section-title section-title--left">
-        <span class="eyebrow">Щит 4×4</span>
-        <h2>16 рекламных слотов</h2>
-      </div>
-      <div class="occupancy-grid-wrap">
-        <div class="ad-preview"><img src="rek.jpg" alt="Пример рекламного блока" /></div>
-        <div id="slots" class="slots-grid" aria-label="Слоты рекламного щита"></div>
-      </div>
-    </section>
-
-    <section id="houses" class="section-shell houses-section">
-      <div class="section-title">
-        <span class="eyebrow">Дома с щитами</span>
-        <h2>Адресная программа</h2>
-        <p>Найдите дом по адресу и посмотрите количество подъездов и этажей.</p>
-      </div>
-      <div class="houses-card">
-        <input id="houseSearch" class="search" type="search" placeholder="Найти дом по адресу..." />
-        <div class="houses-head"><span>Адрес</span><span>Подъездов</span><span>Этажей</span></div>
-        <div id="housesList" class="houses-list"></div>
-      </div>
-    </section>
-
-    <section id="contacts" class="contacts-band">
-      <div class="section-shell contact-layout">
-        <div>
-          <span class="eyebrow eyebrow--light">Контакты</span>
-          <h2>Свяжитесь с нами</h2>
-          <p>Поможем определиться с форматом размещения. Консультация бесплатная.</p>
-        </div>
-        <div class="contact-card">
-          <h3>Ваш персональный менеджер</h3>
-          <a class="phone" href="tel:+79393742324">8-93-93-74-23-24</a>
-          <span>Консультация с 08:00 до 19:00</span>
-          <div class="contact-actions">
-            <a class="button button--primary" href="tel:+79393742324">Позвонить</a>
-            <a class="button button--whatsapp" href="https://wa.me/79393742324" target="_blank" rel="noopener">WhatsApp</a>
-          </div>
-        </div>
-        <ul class="contact-list">
-          <li><img src="icons/email.png" alt=""> Prime.plus.rt@gmail.com</li>
-          <li><img src="icons/telegram.png" alt=""> Telegram: 8 93 93 74 23 24</li>
-          <li><img src="icons/MAX.png" alt=""> MAX: 8 93 93 74 23 24</li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <div id="adminHint" class="admin-hint" hidden>Режим администратора включён</div>
-
-  <div id="adminModal" class="admin-modal" hidden>
-    <div class="admin-modal__backdrop" data-admin-close></div>
-    <form class="admin-modal__card" id="adminLoginForm">
-      <button class="admin-modal__close" type="button" data-admin-close aria-label="Закрыть">×</button>
-      <div class="admin-modal__icon">🔐</div>
-      <h2>Вход администратора</h2>
-      <p>Введите пароль, чтобы включить режим управления слотами.</p>
-      <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Пароль" />
-      <button class="button button--primary" type="submit">Войти</button>
-      <span id="adminError" class="admin-modal__error" hidden>Неверный пароль</span>
-    </form>
+    <div class="price">40 ₽</div>
+    <button class="btn">Итого за месяц: 24 000 ₽</button>
   </div>
-  <footer class="footer">© Прайм Плюс · Размещение рекламы внутри подъездов</footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script src="script.js"></script>
+  <div class="tariff-card">
+    <div class="tariff-top">
+      <span class="tag">Сбалансированный</span>
+      <span class="format">A5</span>
+    </div>
+    <h3>«Весь город»</h3>
+    <div class="size">148×210 мм</div>
+
+    <ul class="features">
+      <li>600 подъездов</li>
+      <li>16 рекламных слотов</li>
+      <li>Лучшее соотношение цены</li>
+    </ul>
+
+    <div class="price">20 ₽</div>
+    <button class="btn">Итого за месяц: 12 000 ₽</button>
+  </div>
+
+  <div class="tariff-card">
+    <div class="tariff-top">
+      <span class="tag">Быстрый старт</span>
+      <span class="format">A6</span>
+    </div>
+    <h3>«Лайт»</h3>
+    <div class="size">148×105 мм</div>
+
+    <ul class="features">
+      <li>600 подъездов</li>
+      <li>16 рекламных слотов</li>
+      <li>Минимальный бюджет</li>
+    </ul>
+
+    <div class="price">10 ₽</div>
+    <button class="btn">Итого за месяц: 6 000 ₽</button>
+  </div>
+
+</section>
+
 </body>
 </html>
