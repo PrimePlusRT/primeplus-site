@@ -292,8 +292,16 @@ function escapeHTML(value) {
     root.style.setProperty('--my', `${e.clientY}px`);
   }, { passive:true });
 
-  // Тарифные карточки оформлены в HTML/CSS: не добавляем служебные подписи,
-  // чтобы передняя сторона не зеркалилась и не ломалась при flip-анимации.
+  const labels = ['Большой формат','Самый универсальный','Компактный формат'];
+  document.querySelectorAll('.tariff-card').forEach((card, index) => {
+    card.setAttribute('data-tilt','');
+    if (!card.querySelector('.tariff-glow')) card.insertAdjacentHTML('afterbegin','<div class="tariff-glow"></div>');
+    if (!card.querySelector('.tariff-label')) {
+      const cls = index === 1 ? 'tariff-label tariff-label--hit' : 'tariff-label';
+      const title = labels[index] || 'Тариф';
+      card.insertAdjacentHTML('afterbegin', `<span class="${cls}">${title}</span>`);
+    }
+  });
 
   const revealTargets = document.querySelectorAll('.section-shell, .contacts-band, .tariff-card, .format-copy div');
   revealTargets.forEach((el) => el.classList.add('reveal'));
@@ -334,16 +342,19 @@ function escapeHTML(value) {
   });
 })();
 
-// Flip tariff cards: desktop opens on hover, mobile opens on tap.
-(function flipTariffCards(){
-  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  document.querySelectorAll('.flip-card').forEach((card) => {
-    if (canHover) return;
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return;
-      document.querySelectorAll('.flip-card.is-flipped').forEach((other) => {
-        if (other !== card) other.classList.remove('is-flipped');
-      });
+// Flip tariff cards on touch devices / keyboard without breaking desktop hover
+(function setupTariffFlipCards(){
+  const cards = document.querySelectorAll('.tariff-flip');
+  cards.forEach((card) => {
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (canHover) return;
+      card.classList.toggle('is-flipped');
+    });
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
       card.classList.toggle('is-flipped');
     });
   });
