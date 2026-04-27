@@ -341,3 +341,21 @@ function escapeHTML(value) {
     });
   });
 })();
+
+// Flip tariff cards on touch devices / keyboard without breaking desktop hover
+(function setupTariffFlipCards(){
+  const cards = document.querySelectorAll('.tariff-flip');
+  cards.forEach((card) => {
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (canHover) return;
+      card.classList.toggle('is-flipped');
+    });
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      card.classList.toggle('is-flipped');
+    });
+  });
+})();
