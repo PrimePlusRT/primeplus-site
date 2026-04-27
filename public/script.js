@@ -171,16 +171,34 @@ async function initMap() {
     return;
   }
 
-  const bounds = [];
+  const clusters = new Map();
   withCoords.forEach((h) => {
     const lat = Number(h.lat);
     const lon = Number(h.lon);
-    bounds.push([lat, lon]);
-    const icon = L.divIcon({ className: '', html: `<div class="marker-dot">${escapeHTML(h.entrances || '')}</div>`, iconSize: [34, 34], iconAnchor: [17, 17] });
-    L.marker([lat, lon], { icon }).addTo(map).bindPopup(`<b>${escapeHTML(getAddress(h))}</b><br>Подъездов: ${escapeHTML(h.entrances || '—')}<br>Этажей: ${escapeHTML(h.floors || '—')}`);
+    const key = `${Math.round(lat * 350)}_${Math.round(lon * 350)}`;
+    if (!clusters.has(key)) clusters.set(key, []);
+    clusters.get(key).push(h);
   });
 
-  if (bounds.length) map.fitBounds(bounds, { padding: [35, 35] });
+  const bounds = [];
+  clusters.forEach((items) => {
+    const lat = items.reduce((sum, h) => sum + Number(h.lat), 0) / items.length;
+    const lon = items.reduce((sum, h) => sum + Number(h.lon), 0) / items.length;
+    bounds.push([lat, lon]);
+
+    const entrancesTotal = items.reduce((sum, h) => sum + (Number(h.entrances) || 0), 0);
+    const label = items.length > 1 ? items.length : (items[0].entrances || '');
+    const className = items.length > 1 ? 'marker-dot cluster' : 'marker-dot';
+    const popup = items.length > 1
+      ? `<b>${items.length} домов рядом</b><br>Подъездов всего: ${escapeHTML(entrancesTotal || '—')}`
+      : `<b>${escapeHTML(getAddress(items[0]))}</b><br>Подъездов: ${escapeHTML(items[0].entrances || '—')}<br>Этажей: ${escapeHTML(items[0].floors || '—')}`;
+
+    const icon = L.divIcon({ className: '', html: `<div class="${className}">${escapeHTML(label)}</div>`, iconSize: [34, 34], iconAnchor: [17, 17] });
+    L.marker([lat, lon], { icon }).addTo(map).bindPopup(popup);
+  });
+
+  setTimeout(() => map.invalidateSize(), 120);
+  if (bounds.length) map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 });
 }
 
 function getAddress(h) {
