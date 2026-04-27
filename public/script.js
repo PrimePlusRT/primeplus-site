@@ -245,3 +245,64 @@ function escapeHTML(value) {
     });
   });
 })();
+
+// Premium interactions: tariff windows, soft 3D, scroll reveal, background light
+(function premiumInteractions(){
+  const root = document.documentElement;
+  window.addEventListener('pointermove', (e) => {
+    root.style.setProperty('--mx', `${e.clientX}px`);
+    root.style.setProperty('--my', `${e.clientY}px`);
+  }, { passive:true });
+
+  const labels = ['Максимальный охват','Хит размещения','Лёгкий старт'];
+  const features = [
+    ['600 рекламных щитов','печать и раскладка включены','для крупных объявлений'],
+    ['600 рекламных щитов','баланс цены и заметности','для постоянной рекламы'],
+    ['600 рекламных щитов','доступный старт','для контактов и визиток']
+  ];
+  document.querySelectorAll('.tariff-card').forEach((card, index) => {
+    card.setAttribute('data-tilt','');
+    if (!card.querySelector('.tariff-glow')) card.insertAdjacentHTML('afterbegin','<div class="tariff-glow"></div>');
+    if (!card.querySelector('.tariff-label')) {
+      const cls = index === 1 ? 'tariff-label tariff-label--hit' : 'tariff-label';
+      const title = labels[index] || 'Тариф';
+      card.insertAdjacentHTML('afterbegin', `<span class="${cls}">${title}</span>`);
+    }
+    if (!card.querySelector('.tariff-features')) {
+      const html = (features[index] || []).map((item)=>`<li>${item}</li>`).join('');
+      const priceBlock = card.querySelector('strong');
+      if (priceBlock) priceBlock.insertAdjacentHTML('beforebegin', `<ul class="tariff-features">${html}</ul>`);
+    }
+  });
+
+  const revealTargets = document.querySelectorAll('.section-shell, .contacts-band, .tariff-card, .format-copy div');
+  revealTargets.forEach((el) => el.classList.add('reveal'));
+  const observer = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }) : null;
+  revealTargets.forEach((el, i) => {
+    el.style.transitionDelay = `${Math.min(i * 0.025, 0.18)}s`;
+    if (observer) observer.observe(el); else el.classList.add('is-visible');
+  });
+
+  document.querySelectorAll('[data-tilt]').forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      if (window.innerWidth < 900) return;
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const rx = ((y / r.height) - 0.5) * -7;
+      const ry = ((x / r.width) - 0.5) * 8;
+      const lift = card.classList.contains('tariff-card--accent') ? -18 : -12;
+      card.style.transform = `translateY(${lift}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
