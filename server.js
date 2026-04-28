@@ -38,19 +38,25 @@ app.use(
 );
 
 
-// Force new favicon and prevent old browser/server cache from being reused.
-app.get(["/favicon.ico", "/favicon.png", "/favicon.svg"], (req, res) => {
-  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+// ABSOLUTE FAVICON FIX: always return the new logo and disable cache.
+app.get([
+  "/favicon.ico",
+  "/favicon.png",
+  "/favicon.svg",
+  "/favicon-16x16.png",
+  "/favicon-32x32.png",
+  "/favicon-48x48.png",
+  "/apple-touch-icon.png",
+  "/android-chrome-192x192.png",
+  "/android-chrome-512x512.png",
+  "/site.webmanifest"
+], (req, res) => {
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0");
   res.setHeader("Pragma", "no-cache");
   res.setHeader("Expires", "0");
 
-  const requested = req.path.endsWith(".svg")
-    ? "favicon.svg"
-    : req.path.endsWith(".png")
-      ? "favicon.png"
-      : "favicon.ico";
-
-  res.sendFile(path.join(PUBLIC_DIR, requested));
+  const fileName = path.basename(req.path);
+  res.sendFile(path.join(PUBLIC_DIR, fileName));
 });
 
 app.use(express.static(PUBLIC_DIR));
