@@ -921,3 +921,79 @@ body.modal-open{overflow:hidden}
   .tariff-mini{height:68px!important;margin-bottom:17px!important}
   .tariff-cards--flip h3{font-size:24px!important}.tariff-cards--flip .size{font-size:31px!important}.tariff-cards--flip .price{font-size:42px!important}
 }
+
+/* === 2026-04-28: cleaner tariff faces with clear 600-shield calculation === */
+.tariff-cards--flip .tariff-face--front{
+  justify-content:flex-start!important;
+}
+.tariff-cards--flip h3{
+  margin-bottom:10px!important;
+}
+.tariff-cards--flip .size{
+  margin-bottom:10px!important;
+}
+.tariff-meta{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  margin:0 0 12px!important;
+}
+.tariff-meta span{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:30px!important;
+  padding:0 12px!important;
+  border-radius:999px!important;
+  background:rgba(232,248,255,.92)!important;
+  border:1px solid rgba(60,190,220,.34)!important;
+  color:#006bc9!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  white-space:nowrap!important;
+}
+.tariff-cards--flip p{
+  min-height:40px!important;
+  margin-bottom:10px!important;
+  font-size:15px!important;
+  color:#526d86!important;
+}
+.tariff-cards--flip .price{
+  margin:4px 0 7px!important;
+  padding:15px 14px 13px!important;
+}
+.tariff-cards--flip small{
+  margin-bottom:8px!important;
+}
+.tariff-calc{
+  width:max-content!important;
+  max-width:100%!important;
+  margin:0 auto 12px!important;
+  padding:7px 12px!important;
+  border-radius:999px!important;
+  background:rgba(0,110,214,.07)!important;
+  color:#0a6ec7!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+.tariff-cards--flip strong{
+  margin-top:0!important;
+}
+.tariff-cards--flip em{
+  margin-top:10px!important;
+}
+@media (min-width:981px){
+  .tariff-cards--flip .tariff-card,
+  .tariff-card__inner,
+  .tariff-face{
+    min-height:506px!important;
+  }
+}
+@media (max-width:560px){
+  .tariff-meta span{font-size:12px!important;padding:0 10px!important;min-height:28px!important}
+  .tariff-calc{font-size:12px!important}
+  .tariff-cards--flip p{min-height:auto!important}
+}
