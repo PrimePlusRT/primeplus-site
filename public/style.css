@@ -1220,36 +1220,3 @@ body.modal-open{overflow:hidden}
   .clean-tariff__total{font-size:15px!important;}
   .clean-tariff__back h3{font-size:26px!important;}
 }
-
-
-/* === REQUEST FIX 28.04: remove texts under price + lift total === */
-.clean-tariff__sub,
-.clean-tariff__calc{
-  display:none!important;
-}
-.clean-tariff__price-box{
-  margin-top:22px!important;
-  padding:18px 14px!important;
-}
-.clean-tariff__total{
-  margin-top:16px!important;
-  margin-bottom:0!important;
-}
-.clean-tariff__hint{
-  margin-top:10px!important;
-}
-.tariff-cards--clean .tariff-card,
-.tariff-cards--clean .tariff-card__inner,
-.tariff-cards--clean .tariff-face{
-  min-height:450px!important;
-}
-@media (max-width:980px){
-  .tariff-cards--clean .tariff-card,
-  .tariff-cards--clean .tariff-card__inner,
-  .tariff-cards--clean .tariff-face{min-height:450px!important;}
-}
-@media (max-width:560px){
-  .tariff-cards--clean .tariff-card,
-  .tariff-cards--clean .tariff-card__inner,
-  .tariff-cards--clean .tariff-face{min-height:430px!important;}
-}
