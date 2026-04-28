@@ -1259,3 +1259,22 @@ body.modal-open{overflow:hidden}
     margin-top:14px!important;
   }
 }
+
+/* === Desktop tariff lift: move title/price/total slightly higher, keep mobile unchanged === */
+@media (min-width: 981px){
+  .tariff-cards--clean .clean-tariff__top{
+    margin-bottom: 10px !important;
+  }
+  .tariff-cards--clean .clean-tariff__main{
+    margin-bottom: 16px !important;
+  }
+  .tariff-cards--clean .clean-tariff__price-box{
+    margin-top: 10px !important;
+  }
+  .tariff-cards--clean .clean-tariff__total{
+    margin-top: 12px !important;
+  }
+  .tariff-cards--clean .clean-tariff__hint{
+    margin-top: 8px !important;
+  }
+}
