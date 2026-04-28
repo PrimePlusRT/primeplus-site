@@ -1221,31 +1221,41 @@ body.modal-open{overflow:hidden}
   .clean-tariff__back h3{font-size:26px!important;}
 }
 
-
-/* === USER FIX 2026-04-28: tariff front cleanup only ===
-   Убрана строка расчёта под ценой, сохранена подпись "за 1 рекламную колонку / месяц".
-   Контент на лицевой стороне карточек поднят выше, остальной сайт не тронут. */
+/* === Tariff final fixes: cleaned front + adaptive hint text === */
 .clean-tariff__calc{
   display:none!important;
 }
 .clean-tariff__top{
-  margin-bottom:18px!important;
+  margin-bottom:20px!important;
 }
 .clean-tariff__main{
   margin-bottom:18px!important;
 }
 .clean-tariff__price-box{
   margin-top:18px!important;
-  padding:18px 14px 15px!important;
 }
 .clean-tariff__total{
-  margin-top:18px!important;
+  margin-top:14px!important;
 }
-.clean-tariff__hint{
-  margin-top:10px!important;
+.clean-tariff__hint .hint-mobile{
+  display:none!important;
+}
+.clean-tariff__hint .hint-desktop{
+  display:inline!important;
+}
+@media (max-width:768px), (hover:none), (pointer:coarse){
+  .clean-tariff__hint .hint-desktop{
+    display:none!important;
+  }
+  .clean-tariff__hint .hint-mobile{
+    display:inline!important;
+  }
 }
 @media (max-width:560px){
-  .clean-tariff__top{margin-bottom:14px!important;}
-  .clean-tariff__main{margin-bottom:15px!important;}
-  .clean-tariff__price-box{margin-top:16px!important;}
+  .clean-tariff__top{
+    margin-bottom:18px!important;
+  }
+  .clean-tariff__price-box{
+    margin-top:14px!important;
+  }
 }
