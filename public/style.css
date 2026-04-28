@@ -923,5 +923,300 @@ body.modal-open{overflow:hidden}
 }
 
 
-/* === CLEAN REBUILD: tariff flip cards, fixed readable front/back === */
-.tariff-cards--flip{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:28px!important;perspective:1600px!important;align-items:stretch!important}.tariff-cards--flip .tariff-card,.tariff-cards--flip .tariff-card--accent{min-height:560px!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;transform:none!important;position:relative!important}.tariff-card__inner{position:relative!important;width:100%!important;min-height:560px!important;height:100%!important;transform-style:preserve-3d!important;transition:transform .68s cubic-bezier(.2,.75,.16,1)!important;border-radius:34px!important}.tariff-face{position:absolute!important;inset:0!important;min-height:560px!important;display:flex!important;flex-direction:column!important;padding:28px 28px 24px!important;border-radius:34px!important;border:1px solid rgba(88,205,233,.75)!important;overflow:hidden!important;backface-visibility:hidden!important;-webkit-backface-visibility:hidden!important;box-shadow:0 22px 62px rgba(0,70,120,.11)!important}.tariff-face::before{content:""!important;position:absolute!important;inset:0 0 auto 0!important;height:8px!important;background:linear-gradient(90deg,#0074dc,#22c4d6,#85eaff)!important}.tariff-face--front{background:linear-gradient(180deg,#fff 0%,#f7fdff 100%)!important;transform:rotateY(0deg)!important;color:#092139!important}.tariff-face--back{transform:rotateY(180deg)!important;justify-content:center!important;gap:18px!important;background:radial-gradient(circle at 20% 15%,rgba(141,236,255,.42),transparent 30%),linear-gradient(135deg,#006ed6 0%,#16bdd2 68%,#9df4ff 145%)!important;color:#fff!important}@media (hover:hover) and (pointer:fine){.tariff-cards--flip .tariff-card:hover .tariff-card__inner{transform:rotateY(180deg) translateY(-10px)!important}.tariff-cards--flip .tariff-card:hover{filter:drop-shadow(0 34px 48px rgba(0,110,214,.20))!important}}.tariff-cards--flip .tariff-card.is-flipped .tariff-card__inner{transform:rotateY(180deg)!important}.tariff-topline{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;margin-bottom:18px!important}.tariff-pill{display:inline-flex!important;width:auto!important;max-width:calc(100% - 70px)!important;margin:0!important;padding:8px 14px!important;border-radius:999px!important;background:#eaf8ff!important;color:#006bc9!important;font-size:13px!important;font-weight:950!important;line-height:1!important;white-space:nowrap!important}.tariff-cards--flip .badge{position:static!important;width:58px!important;height:58px!important;min-width:58px!important;display:grid!important;place-items:center!important;border-radius:18px!important;background:#f0fbff!important;color:#006bc9!important;font-size:27px!important;font-weight:1000!important;box-shadow:0 12px 28px rgba(0,110,214,.12)!important;z-index:2!important}.tariff-face--back .badge{position:absolute!important;top:24px!important;right:24px!important;background:rgba(255,255,255,.95)!important}.tariff-mini{height:54px!important;display:flex!important;align-items:center!important;gap:10px!important;padding:13px!important;margin:0 0 20px!important;border-radius:24px!important;background:linear-gradient(135deg,#ddfbff,#a9f0f5)!important;border:1px solid rgba(255,255,255,.8)!important}.tariff-mini i{height:7px!important;flex:1!important;display:block!important;border-radius:999px!important;background:#58b5e4!important;box-shadow:none!important}.tariff-mini--a4 i:first-child,.tariff-mini--a5 i:nth-child(2),.tariff-mini--a6 i:nth-child(4){height:18px!important;background:linear-gradient(90deg,#0076d8,#21c5d6)!important}.tariff-cards--flip h3{margin:0 0 8px!important;color:#092139!important;font-size:26px!important;line-height:1.05!important;font-weight:1000!important}.tariff-face--back h3{color:#fff!important;font-size:31px!important;margin:0 70px 0 0!important;text-shadow:0 3px 12px rgba(0,42,88,.18)!important}.tariff-cards--flip .size{margin:0!important;color:#006bc9!important;font-size:36px!important;line-height:1!important;font-weight:1000!important;letter-spacing:-.035em!important}.tariff-meta{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin:12px 0 14px!important}.tariff-meta span,.tariff-calc{display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:7px 13px!important;border-radius:999px!important;background:#edf9ff!important;border:1px solid #9ce2ff!important;color:#006bc9!important;font-size:13px!important;font-weight:950!important;line-height:1!important}.tariff-short{min-height:42px!important;margin:0 0 16px!important;color:#58718a!important;font-size:16px!important;line-height:1.28!important;font-weight:850!important}.tariff-cards--flip .price{margin:auto 0 7px!important;width:100%!important;padding:12px 14px 10px!important;border-radius:20px!important;background:linear-gradient(135deg,#fff,#ecfbff)!important;color:#006bc9!important;font-size:50px!important;line-height:1!important;font-weight:1000!important;text-align:center!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 12px 30px rgba(0,110,214,.10)!important}.tariff-cards--flip small{display:block!important;margin:0 0 10px!important;color:#005fae!important;font-size:13px!important;line-height:1.15!important;font-weight:950!important;text-align:center!important}.tariff-calc{width:max-content!important;max-width:100%!important;margin:0 auto 12px!important;background:#e6f5ff!important;border-color:transparent!important}.tariff-cards--flip strong{display:block!important;margin:0!important;padding:14px 16px!important;border-radius:18px!important;background:linear-gradient(90deg,#087bd7,#23bfd2)!important;color:#fff!important;text-align:center!important;font-size:16px!important;line-height:1.1!important;font-weight:1000!important;white-space:normal!important}.tariff-cards--flip em{display:block!important;margin-top:11px!important;color:#6a8298!important;font-style:normal!important;font-size:12px!important;line-height:1.15!important;font-weight:850!important;text-align:center!important}.tariff-face--back ul{margin:0!important;padding:0!important;list-style:none!important;display:grid!important;gap:13px!important}.tariff-face--back li{position:relative!important;padding:14px 14px 14px 46px!important;border-radius:18px!important;background:rgba(255,255,255,.17)!important;border:1px solid rgba(255,255,255,.25)!important;color:#fff!important;font-size:16px!important;line-height:1.25!important;font-weight:850!important;backdrop-filter:blur(10px)!important}.tariff-face--back li::before{content:"✓"!important;position:absolute!important;left:14px!important;top:50%!important;transform:translateY(-50%)!important;width:23px!important;height:23px!important;border-radius:9px!important;display:grid!important;place-items:center!important;background:#fff!important;color:#0074dc!important;font-weight:1000!important}.tariff-face--back .button{width:100%!important;min-height:54px!important;background:#fff!important;color:#006bc9!important;box-shadow:0 16px 34px rgba(0,48,96,.18)!important}@media (max-width:1180px){.tariff-cards--flip{gap:20px!important}.tariff-face{padding:26px 22px 22px!important}.tariff-cards--flip .size{font-size:32px!important}.tariff-cards--flip .price{font-size:46px!important}}@media (max-width:980px){.tariff-cards--flip{grid-template-columns:1fr!important;width:min(100%,440px)!important;margin-left:auto!important;margin-right:auto!important;gap:20px!important}.tariff-cards--flip .tariff-card,.tariff-card__inner,.tariff-face{min-height:550px!important}}@media (max-width:560px){.tariff-cards--flip{width:min(100%,390px)!important}.tariff-cards--flip .tariff-card,.tariff-card__inner,.tariff-face{min-height:535px!important}.tariff-face{padding:24px 20px 21px!important;border-radius:28px!important}.tariff-card__inner{border-radius:28px!important}.tariff-pill{font-size:12px!important;padding:8px 11px!important}.tariff-cards--flip .badge{width:52px!important;height:52px!important;min-width:52px!important;font-size:24px!important}.tariff-mini{height:48px!important;margin-bottom:18px!important}.tariff-cards--flip h3{font-size:24px!important}.tariff-cards--flip .size{font-size:30px!important}.tariff-short{font-size:15px!important;min-height:40px!important}.tariff-cards--flip .price{font-size:43px!important}.tariff-cards--flip strong{font-size:15px!important}.tariff-face--back li{font-size:15px!important}}
+/* === CLEAN TARIFF CARDS FROM SCRATCH — 28.04 === */
+.tariff-cards--clean{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:28px!important;
+  margin-top:42px!important;
+  align-items:stretch!important;
+  perspective:1600px!important;
+}
+.tariff-cards--clean .tariff-card,
+.tariff-cards--clean .tariff-card--accent{
+  position:relative!important;
+  min-height:470px!important;
+  height:auto!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  transform:none!important;
+  filter:none!important;
+}
+.tariff-cards--clean .tariff-card::before,
+.tariff-cards--clean .tariff-card::after,
+.tariff-cards--clean .tariff-mini,
+.tariff-cards--clean .tariff-pill,
+.tariff-cards--clean .badge{
+  display:none!important;
+  content:none!important;
+}
+.tariff-cards--clean .tariff-card__inner{
+  position:relative!important;
+  min-height:470px!important;
+  height:100%!important;
+  border-radius:32px!important;
+  transform-style:preserve-3d!important;
+  transition:transform .7s cubic-bezier(.2,.75,.16,1)!important;
+}
+.tariff-cards--clean .tariff-face{
+  position:absolute!important;
+  inset:0!important;
+  min-height:470px!important;
+  height:100%!important;
+  padding:28px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  border-radius:32px!important;
+  border:1px solid rgba(86,204,232,.72)!important;
+  overflow:hidden!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+  box-shadow:0 24px 58px rgba(0,70,120,.11)!important;
+}
+.tariff-cards--clean .tariff-face::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0 0 auto 0!important;
+  height:7px!important;
+  background:linear-gradient(90deg,#0074dc,#23c6d6)!important;
+}
+.tariff-cards--clean .tariff-face::after{
+  content:""!important;
+  position:absolute!important;
+  right:-110px!important;
+  bottom:-120px!important;
+  width:260px!important;
+  height:260px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,rgba(36,199,216,.20),transparent 68%)!important;
+  pointer-events:none!important;
+}
+.clean-tariff__front{
+  background:linear-gradient(180deg,#fff 0%,#f7fdff 57%,#eaf8ff 100%)!important;
+  color:#08213a!important;
+  transform:rotateY(0deg)!important;
+}
+.clean-tariff__back{
+  background:radial-gradient(circle at 18% 10%,rgba(132,235,255,.46),transparent 29%),linear-gradient(135deg,#0074dc 0%,#12bdd2 65%,#c9f7ff 160%)!important;
+  color:#fff!important;
+  transform:rotateY(180deg)!important;
+  justify-content:center!important;
+  gap:20px!important;
+}
+@media (hover:hover) and (pointer:fine){
+  .tariff-cards--clean .tariff-card:hover .tariff-card__inner{
+    transform:rotateY(180deg) translateY(-8px)!important;
+  }
+  .tariff-cards--clean .tariff-card:hover{
+    filter:drop-shadow(0 32px 42px rgba(0,110,214,.18))!important;
+  }
+}
+.tariff-cards--clean .tariff-card.is-flipped .tariff-card__inner{transform:rotateY(180deg)!important;}
+.clean-tariff__top{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  margin-bottom:32px!important;
+}
+.clean-tariff__label{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:34px!important;
+  padding:0 15px!important;
+  border-radius:999px!important;
+  background:#e8f8ff!important;
+  color:#006bc9!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:950!important;
+  white-space:nowrap!important;
+}
+.clean-tariff__format{
+  display:grid!important;
+  place-items:center!important;
+  width:60px!important;
+  height:60px!important;
+  flex:0 0 60px!important;
+  border-radius:19px!important;
+  background:#f0fbff!important;
+  color:#006bc9!important;
+  font-size:28px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+  box-shadow:0 12px 28px rgba(0,110,214,.10)!important;
+}
+.clean-tariff__format--back{
+  position:absolute!important;
+  right:24px!important;
+  top:24px!important;
+  background:rgba(255,255,255,.20)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+.clean-tariff__main{margin-bottom:22px!important;}
+.tariff-cards--clean h3{
+  margin:0 0 12px!important;
+  padding:0!important;
+  color:#092139!important;
+  font-size:28px!important;
+  line-height:1.08!important;
+  font-weight:1000!important;
+  letter-spacing:-.025em!important;
+}
+.clean-tariff__back h3{
+  margin-right:74px!important;
+  color:#fff!important;
+  font-size:30px!important;
+  text-shadow:0 3px 12px rgba(0,42,88,.18)!important;
+}
+.clean-tariff__size{
+  margin-bottom:14px!important;
+  color:#006bc9!important;
+  font-size:38px!important;
+  line-height:1!important;
+  font-weight:1000!important;
+  letter-spacing:-.035em!important;
+}
+.clean-tariff__coverage{
+  display:inline-flex!important;
+  width:max-content!important;
+  max-width:100%!important;
+  padding:9px 14px!important;
+  border-radius:999px!important;
+  background:#edf9ff!important;
+  border:1px solid rgba(77,195,232,.42)!important;
+  color:#006bc9!important;
+  font-size:14px!important;
+  line-height:1!important;
+  font-weight:950!important;
+}
+.clean-tariff__price-box{
+  margin-top:auto!important;
+  padding:20px 14px 16px!important;
+  border-radius:24px!important;
+  background:linear-gradient(135deg,#fff,#eafaff)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 14px 30px rgba(0,110,214,.10)!important;
+  text-align:center!important;
+}
+.clean-tariff__price{
+  color:#006bc9!important;
+  font-size:56px!important;
+  line-height:.9!important;
+  font-weight:1000!important;
+  letter-spacing:-.04em!important;
+}
+.clean-tariff__sub{
+  margin-top:8px!important;
+  color:#005fae!important;
+  font-size:13px!important;
+  line-height:1.18!important;
+  font-weight:950!important;
+}
+.clean-tariff__calc{
+  align-self:center!important;
+  margin:14px 0 12px!important;
+  padding:8px 14px!important;
+  border-radius:999px!important;
+  background:#e8f5ff!important;
+  color:#006bc9!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:950!important;
+}
+.clean-tariff__total{
+  width:100%!important;
+  padding:14px 16px!important;
+  border-radius:18px!important;
+  background:linear-gradient(90deg,#087bd7,#23bfd2)!important;
+  color:#fff!important;
+  text-align:center!important;
+  font-size:17px!important;
+  line-height:1.1!important;
+  font-weight:1000!important;
+  white-space:normal!important;
+}
+.clean-tariff__hint{
+  margin-top:11px!important;
+  color:#6a8298!important;
+  text-align:center!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:850!important;
+}
+.clean-tariff__back ul{
+  margin:0!important;
+  padding:0!important;
+  list-style:none!important;
+  display:grid!important;
+  gap:13px!important;
+}
+.clean-tariff__back li{
+  position:relative!important;
+  padding:14px 14px 14px 44px!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.17)!important;
+  border:1px solid rgba(255,255,255,.24)!important;
+  color:#fff!important;
+  font-size:16px!important;
+  line-height:1.23!important;
+  font-weight:850!important;
+}
+.clean-tariff__back li::before{
+  content:"✓"!important;
+  position:absolute!important;
+  left:14px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:22px!important;
+  height:22px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  color:#0074dc!important;
+  font-weight:1000!important;
+}
+.clean-tariff__back .button{
+  width:100%!important;
+  min-height:54px!important;
+  background:#fff!important;
+  color:#006bc9!important;
+  box-shadow:0 16px 34px rgba(0,48,96,.18)!important;
+}
+@media (max-width:1180px){
+  .tariff-cards--clean{gap:20px!important;}
+  .tariff-cards--clean .tariff-face{padding:24px!important;}
+  .clean-tariff__size{font-size:34px!important;}
+  .clean-tariff__price{font-size:50px!important;}
+}
+@media (max-width:980px){
+  .tariff-cards--clean{
+    grid-template-columns:1fr!important;
+    width:min(100%,430px)!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  .tariff-cards--clean .tariff-card,
+  .tariff-cards--clean .tariff-card__inner,
+  .tariff-cards--clean .tariff-face{min-height:470px!important;}
+}
+@media (max-width:560px){
+  .tariff-cards--clean{width:100%!important;}
+  .tariff-cards--clean .tariff-card,
+  .tariff-cards--clean .tariff-card__inner,
+  .tariff-cards--clean .tariff-face{min-height:455px!important;}
+  .tariff-cards--clean .tariff-face{padding:22px 18px!important;border-radius:28px!important;}
+  .tariff-cards--clean .tariff-card__inner{border-radius:28px!important;}
+  .clean-tariff__top{margin-bottom:26px!important;}
+  .clean-tariff__label{font-size:12px!important;padding:0 12px!important;}
+  .clean-tariff__format{width:52px!important;height:52px!important;flex-basis:52px!important;font-size:24px!important;}
+  .tariff-cards--clean h3{font-size:25px!important;}
+  .clean-tariff__size{font-size:31px!important;}
+  .clean-tariff__price{font-size:46px!important;}
+  .clean-tariff__total{font-size:15px!important;}
+  .clean-tariff__back h3{font-size:26px!important;}
+}
