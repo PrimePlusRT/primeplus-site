@@ -37,6 +37,22 @@ app.use(
   })
 );
 
+
+// Force new favicon and prevent old browser/server cache from being reused.
+app.get(["/favicon.ico", "/favicon.png", "/favicon.svg"], (req, res) => {
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+
+  const requested = req.path.endsWith(".svg")
+    ? "favicon.svg"
+    : req.path.endsWith(".png")
+      ? "favicon.png"
+      : "favicon.ico";
+
+  res.sendFile(path.join(PUBLIC_DIR, requested));
+});
+
 app.use(express.static(PUBLIC_DIR));
 
 function findExcelFile() {
